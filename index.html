@@ -10,7 +10,6 @@
     --verde: #2EAA3F;
     --verde-osc: #1d7a2b;
     --negro: #0a0a0a;
-    --gris1: #111111;
     --gris2: #1a1a1a;
     --gris3: #222222;
     --borde: #2a2a2a;
@@ -104,7 +103,7 @@
   </div>
   <div class="input-area">
     <input type="file" id="file-input" accept="image/*,application/pdf" style="display:none" onchange="handleFile(this.files[0])"/>
-    <button class="btn-clip" onclick="document.getElementById('file-input').click()" title="Adjuntar foto o PDF de la multa">📎</button>
+    <button class="btn-clip" onclick="document.getElementById('file-input').click()" title="Adjuntar foto o PDF">📎</button>
     <textarea id="input-text" rows="2" placeholder="Describí tu multa o adjuntá una foto/PDF..." onkeydown="handleKey(event)"></textarea>
     <button class="btn-send" id="btn-send" onclick="sendMessage()">Enviar</button>
   </div>
@@ -125,113 +124,97 @@ const PRECIO = 5000;
 
 const SYSTEM_PROMPT = `Sos ZAFÁ, un asistente legal especializado en infracciones de tránsito de la República Argentina.
 
-PERSONALIDAD: Hablás en español rioplatense (vos, no tú). Sos profesional pero accesible. Directo y honesto. Nunca prometés resultados garantizados. Siempre aclarás: "Este análisis es orientativo y no reemplaza el asesoramiento de un abogado matriculado."
+PERSONALIDAD: Hablás en español rioplatense. Sos profesional pero accesible. Directo y honesto. Siempre aclarás al final: "Este análisis es orientativo y no reemplaza el asesoramiento de un abogado matriculado."
 
-FLUJO ESTRICTO — SEGUILO SIEMPRE:
+FLUJO ESTRICTO:
 
-PASO 1 — SALUDO/CONSULTA GENERAL:
-Si el usuario saluda ("hola", "buenas", "cómo funciona", etc.) simplemente explicá qué hace ZAFÁ y pedile que comparta la multa. NUNCA ofrezcas el descargo ni menciones el pago en este paso.
+PASO 1 — Si el usuario saluda o hace consulta general: explicá qué hace ZAFÁ y pedile que comparta la multa. NO ofrezcas pago.
 
-PASO 2 — RECEPCIÓN DE MULTA:
-Cuando el usuario envíe foto, PDF o describa los datos de una multa, analizala completamente.
+PASO 2 — Cuando recibas foto, PDF o descripción de una multa: analizala completamente con este marco:
+- Ley Nacional de Tránsito N° 24.449 y Decreto 779/95
+- Ley de Procedimiento Administrativo N° 19.549
+- Normativa provincial: Buenos Aires (Ley 13.927), CABA (Ley 2.148), Córdoba (Ley 8.560), Santa Fe (Ley 13.169), Mendoza (Ley 6.082)
+- Ordenanzas municipales del lugar del acta
 
-PASO 3 — ANÁLISIS LEGAL:
-Analizá con este marco normativo:
-- Ley Nacional de Tránsito N° 24.449 y Decreto Reglamentario N° 779/95
-- Ley Nacional de Procedimiento Administrativo N° 19.549
-- Principios del Derecho Administrativo: legalidad, debido proceso, razonabilidad, proporcionalidad
-- Normativa provincial según jurisdicción (Buenos Aires: Ley 13.927, CABA: Ley 2.148, Córdoba: Ley 8.560, Santa Fe: Ley 13.169, Mendoza: Ley 6.082)
-- Ordenanzas municipales del lugar donde fue labrada el acta
+VICIOS FORMALES a detectar: falta firma/sello del agente, datos incompletos, artículo que no corresponde al hecho, notificación defectuosa, incompetencia del agente, prescripción, falta de calibración de instrumentos de medición.
 
-VICIOS FORMALES: falta de firma/sello del agente, datos incompletos (fecha/hora/lugar/número de acta), identificación incorrecta del vehículo o conductor, artículo que no corresponde al hecho, notificación defectuosa, incompetencia del agente, falta de testigos, descripción vaga, prescripción, duplicidad de actas, falta de habilitación de instrumentos de medición.
+VICIOS SUSTANCIALES: hecho que no encuadra en el artículo, error en calificación, violación de proporcionalidad, violación al debido proceso.
 
-VICIOS SUSTANCIALES: hecho que no encuadra en el artículo citado, error en calificación, violación al principio de proporcionalidad, violación al debido proceso.
-
-PASO 4 — PRESENTAR EL ANÁLISIS así:
+PASO 3 — Presentá el análisis con este formato exacto:
 
 📋 ANÁLISIS DE LA INFRACCIÓN
 
 🔍 DATOS DETECTADOS:
-[datos leídos del acta]
+[datos del acta]
 
 ⚖️ MARCO LEGAL APLICABLE:
-[normativa específica]
+[normativa]
 
 ✅/❌ IRREGULARIDADES ENCONTRADAS:
-[cada irregularidad explicada en lenguaje simple con cita legal]
+[cada irregularidad con cita legal]
 
 📌 CONCLUSIÓN:
-[recomendación clara]
+[recomendación]
 
-PASO 5 — OFERTA DEL DESCARGO:
-SOLO si encontraste irregularidades reales, al final del análisis preguntás EXACTAMENTE esto:
-"¿Querés que prepare el descargo formal para presentar ante el organismo? Por $5.000 obtenés el documento completo listo para entregar."
+PASO 4 — MUY IMPORTANTE: Si encontraste irregularidades, SIEMPRE terminá con esta pregunta exacta:
+"¿Querés que prepare el descargo formal para presentar? Por $5.000 obtenés el documento completo listo para entregar."
 
-Si NO hay irregularidades claras, decíselo honestamente y NO ofrezcas el descargo.
+Si NO hay irregularidades, decíselo honestamente y NO ofrezcas descargo.
 
-PASO 6 — ESPERAR CONFIRMACIÓN:
-Esperá que el usuario responda afirmativamente ("sí", "quiero", "dale", "ok", "bueno", "claro", "adelante"). Solo entonces el sistema activa el pago. No repitas la oferta de pago, solo esperá la respuesta.
+PASO 5 — Cuando el usuario diga que sí quiere el descargo, respondé confirmando que va a poder pagar y que luego le pedirás los datos. NO generes el descargo todavía.
 
-PASO 7 — DESPUÉS DEL PAGO CONFIRMADO, pedís los datos:
+PASO 6 — SOLO después del pago confirmado pedís los datos:
 1. Nombre y apellido completo
 2. DNI
-3. Domicilio completo (calle, número, localidad, provincia)
+3. Domicilio completo
 4. Dominio/patente del vehículo
 5. Jurisdicción donde fue labrada la multa
 6. Número de acta
 7. Fecha límite para presentar (si la conoce)
 
-PASO 8 — GENERACIÓN DEL DESCARGO:
-Con todos los datos generás el descargo completo. Marcalo con INICIO_DESCARGO y FIN_DESCARGO.
+PASO 7 — Con todos los datos generás el descargo completo marcado con INICIO_DESCARGO y FIN_DESCARGO.
 
 Estructura del descargo:
-
 INICIO_DESCARGO
-[CIUDAD], [FECHA COMPLETA]
+[CIUDAD], [FECHA]
 
-SEÑOR/A [CARGO DEL FUNCIONARIO COMPETENTE]
-[ORGANISMO COMPETENTE]
-S / D
+SEÑOR/A [CARGO]
+[ORGANISMO]
+S/D
 
-[NOMBRE COMPLETO], DNI N° [DNI], con domicilio en [DOMICILIO], en mi carácter de titular/conductor del vehículo dominio [PATENTE], me presento ante Ud. y respetuosamente digo:
+[NOMBRE], DNI N° [DNI], con domicilio en [DOMICILIO], titular/conductor del vehículo dominio [PATENTE], me presento y digo:
 
 I. OBJETO
-Que vengo a interponer formal DESCARGO Y/O RECURSO DE IMPUGNACIÓN contra el Acta de Infracción N° [NÚMERO], labrada con fecha [FECHA] en [LUGAR], por los fundamentos de hecho y derecho que expongo a continuación.
+Interpongo formal DESCARGO contra el Acta N° [NÚMERO], labrada el [FECHA] en [LUGAR].
 
 II. HECHOS
-[Descripción clara y objetiva de los hechos]
+[descripción objetiva]
 
-III. VICIOS DETECTADOS EN EL ACTA
-[Desarrollo de cada irregularidad con cita legal específica]
+III. VICIOS DETECTADOS
+[cada irregularidad con cita legal]
 
 IV. DERECHO
-Fundo el presente en:
-- [Artículos específicos de la normativa aplicable]
-- [Principios del Derecho Administrativo]
+[artículos aplicables y principios del Derecho Administrativo]
 
 V. PETITORIO
-Por todo lo expuesto, solicito:
-1. Se tenga por interpuesto el presente descargo en legal tiempo y forma.
-2. Se declare la NULIDAD del Acta N° [NÚMERO] por los vicios formales y/o sustanciales denunciados.
-3. Se archive la presente actuación sin más trámite.
+1. Se tenga por interpuesto el presente descargo.
+2. Se declare la NULIDAD del Acta N° [NÚMERO].
+3. Se archive la actuación sin más trámite.
 
 Proveer de conformidad será JUSTICIA.
 
-[NOMBRE COMPLETO]
+[NOMBRE]
 DNI: [DNI]
-Domicilio: [DOMICILIO]
 FIN_DESCARGO
 
 REGLAS CRÍTICAS:
-- NUNCA ofrezcas el pago si el usuario solo saludó o hizo una consulta general.
-- NUNCA muestres el botón de pago antes de analizar una multa real.
-- NUNCA inventés irregularidades que no existen.
-- Si no podés leer bien la imagen, pedí que la reenvíen o describan los datos.
-- Siempre recomendá consultar un abogado para casos complejos.`;
+- NUNCA ofrezcas pago si el usuario solo saludó.
+- NUNCA inventés irregularidades.
+- Si no podés leer la imagen, pedí que la describan.`;
 
 let historial = [];
 let adjunto = null;
-let step = "chat"; // chat → analisis → ofrecer_pago → datos → descargo
+let step = "chat";
 let pagoConfirmado = false;
 let datosCliente = {};
 let casos = [];
@@ -239,29 +222,26 @@ let descargoPDF = null;
 let adminVisible = false;
 
 window.onload = () => {
-  agregarMensaje("bot", "¡Hola! Soy ZAFÁ, tu asistente legal para infracciones de tránsito.\n\nAnalizá tu multa de forma gratuita: subí una foto, un PDF, o contame los detalles del acta.\n\nSi encontramos irregularidades, te ofrezco preparar tu descargo formal en PDF, listo para presentar ante el organismo correspondiente.\n\n¿Cómo querés empezar?");
+  agregarMensaje("bot", "¡Hola! Soy ZAFÁ, tu asistente legal para infracciones de tránsito.\n\nAnalizá tu multa de forma gratuita: subí una foto, un PDF, o contame los detalles del acta.\n\nSi encontramos irregularidades, te ofrezco preparar tu descargo formal en PDF, listo para presentar.\n\n¿Cómo querés empezar?");
 };
 
 function agregarMensaje(rol, texto, tipo) {
   const cont = document.getElementById("messages");
   const row = document.createElement("div");
   row.className = "msg-row" + (rol === "user" ? " user" : "");
-
   if (tipo === "pago") {
-    row.innerHTML = `
-      <div class="msg-avatar">Z</div>
+    row.innerHTML = `<div class="msg-avatar">Z</div>
       <div class="pago-card">
-        <h3>¿Querés el descargo formal?</h3>
-        <p>PDF completo con argumentos legales, listo para presentar ante el organismo correspondiente.</p>
+        <h3>Descargo formal — ZAFÁ</h3>
+        <p>PDF completo con argumentos legales, listo para presentar ante el organismo.</p>
         <div class="precio">$${PRECIO.toLocaleString("es-AR")}</div>
         <button class="btn-mp" onclick="iniciarPago()">💳 PAGAR CON MERCADO PAGO</button>
-        <p class="nota-mp">Pago seguro vía Mercado Pago · Pago único</p>
+        <p class="nota-mp">Pago seguro · Pago único</p>
       </div>`;
   } else if (tipo === "descargo") {
-    row.innerHTML = `
-      <div class="msg-avatar">Z</div>
+    row.innerHTML = `<div class="msg-avatar">Z</div>
       <div class="descargo-card">
-        <h3>✅ Descargo listo para descargar</h3>
+        <h3>✅ Descargo listo</h3>
         <button class="btn-pdf" onclick="imprimirPDF()">📄 DESCARGAR / IMPRIMIR PDF</button>
       </div>`;
   } else if (tipo === "typing") {
@@ -292,7 +272,7 @@ async function sendMessage() {
     content = [];
     if (adjunto.tipo === "image") content.push({ type: "image", source: { type: "base64", media_type: adjunto.mediaType, data: adjunto.data } });
     else content.push({ type: "document", source: { type: "base64", media_type: "application/pdf", data: adjunto.data } });
-    content.push({ type: "text", text: txt || "Analizá esta multa de tránsito. Detectá todas las irregularidades legales." });
+    content.push({ type: "text", text: txt || "Analizá esta multa. Detectá todas las irregularidades legales." });
   } else {
     content = txt;
   }
@@ -326,22 +306,42 @@ async function sendMessage() {
     agregarMensaje("bot", displayReply);
 
     const low = reply.toLowerCase();
-    const txtLow = txt.toLowerCase();
+    const txtLow = txt ? txt.toLowerCase() : "";
 
-    // PASO: después de analizar multa, si la IA ofrece descargo → paso "analisis"
-    if (step === "chat" && !pagoConfirmado && low.includes("querés que prepare el descargo")) {
+    // Detectar cuando la IA ofrece el descargo después del análisis
+    const iaOfrecioDescargo = (
+      low.includes("descargo formal") ||
+      low.includes("preparar el descargo") ||
+      low.includes("queres que prepare") ||
+      low.includes("querés que prepare") ||
+      low.includes("5.000") ||
+      low.includes("$5000") ||
+      (low.includes("irregularidad") && low.includes("descargo")) ||
+      (low.includes("vicio") && low.includes("descargo")) ||
+      (low.includes("nulidad") && low.includes("descargo"))
+    );
+
+    if (step === "chat" && !pagoConfirmado && iaOfrecioDescargo) {
       step = "analisis";
-      casos.push({ nombre: "", fecha: new Date().toLocaleDateString("es-AR"), pagado: false });
-      actualizarAdmin();
+      if (!casos.find(c => !c.pagado)) {
+        casos.push({ nombre: "", fecha: new Date().toLocaleDateString("es-AR"), pagado: false });
+        actualizarAdmin();
+      }
     }
 
-    // PASO: usuario confirma que quiere el descargo → mostrar botón de pago
-    if (step === "analisis" && !pagoConfirmado) {
-      const confirmo = txtLow.includes("sí") || txtLow.includes("si") || txtLow.includes("quiero") || txtLow.includes("dale") || txtLow.includes("ok") || txtLow.includes("bueno") || txtLow.includes("claro") || txtLow.includes("adelante") || txtLow.includes("quero") || txtLow.includes("yes");
-      if (confirmo) {
-        step = "ofrecer_pago";
-        setTimeout(() => agregarMensaje("bot", null, "pago"), 400);
-      }
+    // Detectar cuando el usuario confirma que quiere el descargo
+    const usuarioConfirmo = (
+      txtLow.includes("sí") || txtLow.includes("si") ||
+      txtLow.includes("quiero") || txtLow.includes("dale") ||
+      txtLow.includes("ok") || txtLow.includes("bueno") ||
+      txtLow.includes("claro") || txtLow.includes("adelante") ||
+      txtLow.includes("yes") || txtLow.includes("obvio") ||
+      txtLow.includes("por supuesto") || txtLow === "s"
+    );
+
+    if (step === "analisis" && !pagoConfirmado && usuarioConfirmo) {
+      step = "ofrecer_pago";
+      setTimeout(() => agregarMensaje("bot", null, "pago"), 400);
     }
 
     if (descargoPDF) {
@@ -359,15 +359,15 @@ function handleKey(e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault
 
 function handleFile(file) {
   if (!file) return;
-  if (!file.type.startsWith("image/") && file.type !== "application/pdf") { alert("Solo se aceptan imágenes o PDF."); return; }
-  const reader = new FileReader();
-  reader.onload = e => {
+  if (!file.type.startsWith("image/") && file.type !== "application/pdf") { alert("Solo imágenes o PDF."); return; }
+  const r = new FileReader();
+  r.onload = e => {
     adjunto = { tipo: file.type.startsWith("image/") ? "image" : "pdf", data: e.target.result.split(",")[1], name: file.name, mediaType: file.type };
     document.getElementById("adjunto-nombre").textContent = (adjunto.tipo === "image" ? "🖼️ " : "📄 ") + file.name;
     document.getElementById("adjunto-preview").style.display = "flex";
-    document.getElementById("input-text").placeholder = "Agregá un comentario (opcional)...";
+    document.getElementById("input-text").placeholder = "Comentario opcional...";
   };
-  reader.readAsDataURL(file);
+  r.readAsDataURL(file);
 }
 
 function quitarAdjunto() {
@@ -398,7 +398,7 @@ function confirmarPago() {
   if (casos.length) casos[casos.length - 1].pagado = true;
   document.getElementById("badge-pago").style.display = "inline-block";
   actualizarAdmin();
-  const txt = "Pago recibido ✅\n\nPara preparar tu descargo necesito tus datos personales:\n\n1. Nombre y apellido completo\n2. DNI\n3. Domicilio completo (calle, número, localidad, provincia)\n4. Dominio/patente del vehículo\n5. Jurisdicción donde fue labrada la multa (ciudad y provincia)\n6. Número de acta (si lo tenés)\n7. Fecha límite para presentar el descargo (si la conocés)\n\nEscribí todos los datos en tu próximo mensaje.";
+  const txt = "Pago recibido ✅\n\nPara preparar tu descargo necesito tus datos:\n\n1. Nombre y apellido completo\n2. DNI\n3. Domicilio completo (calle, número, localidad, provincia)\n4. Dominio/patente del vehículo\n5. Jurisdicción donde fue labrada la multa\n6. Número de acta\n7. Fecha límite para presentar (si la conocés)\n\nEscribí todos los datos juntos en tu próximo mensaje.";
   historial.push({ role: "assistant", content: txt });
   agregarMensaje("bot", txt);
 }
@@ -426,7 +426,7 @@ function imprimirPDF() {
     body{font-family:'Times New Roman',serif;font-size:12pt;color:#000;margin:0}
     .page{padding:3cm 2.5cm;max-width:21cm;margin:auto}
     .logo{text-align:center;font-family:Arial Black,sans-serif;font-size:30pt;color:#2EAA3F;font-weight:900;letter-spacing:4px;margin-bottom:4px}
-    .sub{text-align:center;font-size:10pt;color:#555;margin-bottom:6px;letter-spacing:1px}
+    .sub{text-align:center;font-size:10pt;color:#555;margin-bottom:6px}
     .linea{border-top:3px solid #2EAA3F;margin-bottom:24px}
     h1{font-size:13pt;text-align:center;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px}
     .datos{background:#f8f8f8;border-left:4px solid #2EAA3F;padding:12px 16px;margin-bottom:24px}
@@ -435,7 +435,7 @@ function imprimirPDF() {
     .firma-area{margin-top:60px;display:flex;justify-content:flex-end}
     .firma{border-top:1px solid #000;width:240px;padding-top:6px;font-size:11pt;text-align:center}
     .footer{margin-top:40px;text-align:center;font-size:8.5pt;color:#aaa;border-top:1px solid #eee;padding-top:10px}
-    @media print{body{margin:0}.page{padding:2cm 2cm}}
+    @media print{body{margin:0}}
   </style></head><body><div class="page">
   <div class="logo">ZAFÁ</div>
   <p class="sub">Asistente Legal · Infracciones de Tránsito · Argentina</p>
@@ -445,13 +445,13 @@ function imprimirPDF() {
     <p><strong>Presentante:</strong> ${d.nombre||"—"}</p>
     <p><strong>DNI:</strong> ${d.dni||"—"}</p>
     <p><strong>Domicilio:</strong> ${d.domicilio||"—"}</p>
-    <p><strong>Dominio del vehículo:</strong> ${d.dominio||"—"}</p>
+    <p><strong>Dominio:</strong> ${d.dominio||"—"}</p>
     <p><strong>Jurisdicción:</strong> ${d.jurisdiccion||"—"}</p>
-    <p><strong>Fecha de generación:</strong> ${fecha}</p>
+    <p><strong>Fecha:</strong> ${fecha}</p>
   </div>
   <div class="cuerpo">${descargoPDF}</div>
-  <div class="firma-area"><div class="firma"><p style="margin:0">${d.nombre||"Firma del presentante"}</p><p style="margin:4px 0 0;font-size:10pt">DNI: ${d.dni||"—"}</p></div></div>
-  <div class="footer">Documento generado por ZAFÁ · Solo para uso legal del presentante · No constituye asesoramiento jurídico formal · Se recomienda consultar con un abogado matriculado</div>
+  <div class="firma-area"><div class="firma"><p style="margin:0">${d.nombre||"Firma"}</p><p style="margin:4px 0 0;font-size:10pt">DNI: ${d.dni||"—"}</p></div></div>
+  <div class="footer">Generado por ZAFÁ · Uso legal exclusivo del presentante · No reemplaza asesoramiento jurídico profesional</div>
   </div></body></html>`;
   const w = window.open("", "_blank");
   w.document.write(html);
@@ -471,15 +471,13 @@ function actualizarAdmin() {
   document.getElementById("stat-pagados").textContent = pagados.length;
   document.getElementById("stat-recaudado").textContent = "$" + (pagados.length * PRECIO).toLocaleString("es-AR");
   const lista = document.getElementById("lista-casos");
-  if (!casos.length) { lista.innerHTML = '<p style="color:var(--texto2);font-size:13px;text-align:center;padding:24px">Aún no hay casos registrados.</p>'; return; }
+  if (!casos.length) { lista.innerHTML = '<p style="color:var(--texto2);font-size:13px;text-align:center;padding:24px">Aún no hay casos.</p>'; return; }
   lista.innerHTML = casos.slice().reverse().map(c => `
     <div class="caso">
-      <span style="font-size:20px">${c.pagado ? "✅" : "⏳"}</span>
-      <div style="flex:1">
-        <div class="nombre">${c.nombre || "Cliente sin identificar"}</div>
-        <div class="fecha">${c.fecha} · ${c.pagado ? "Pago confirmado · $" + PRECIO.toLocaleString("es-AR") : "Pendiente de pago"}</div>
-      </div>
-      <span class="estado ${c.pagado ? "pagado" : "pendiente"}">${c.pagado ? "Pagado" : "Pendiente"}</span>
+      <span style="font-size:20px">${c.pagado?"✅":"⏳"}</span>
+      <div style="flex:1"><div class="nombre">${c.nombre||"Sin identificar"}</div>
+      <div class="fecha">${c.fecha} · ${c.pagado?"Pagado · $"+PRECIO.toLocaleString("es-AR"):"Pendiente"}</div></div>
+      <span class="estado ${c.pagado?"pagado":"pendiente"}">${c.pagado?"Pagado":"Pendiente"}</span>
     </div>`).join("");
 }
 </script>
