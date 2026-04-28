@@ -18,31 +18,20 @@
     --texto2: #888888;
   }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background: #0d0d0d; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; }
-
-  /* Header de página */
   .page-header { text-align: center; margin-bottom: 16px; }
   .page-header h1 { font-size: 36px; font-weight: 900; color: var(--verde); letter-spacing: 4px; text-transform: uppercase; }
   .page-header p { font-size: 13px; color: var(--texto2); margin-top: 4px; letter-spacing: 1px; }
-
-  /* Admin toggle */
   .admin-toggle { margin-bottom: 10px; text-align: right; width: 100%; max-width: 740px; }
   .admin-toggle button { background: var(--gris2); border: 1px solid var(--borde); border-radius: 8px; padding: 6px 14px; font-size: 12px; cursor: pointer; color: var(--texto2); }
   .admin-toggle button:hover { color: var(--texto); border-color: var(--verde); }
-
-  /* Chat box */
   .chat-box { width: 100%; max-width: 740px; background: var(--negro); border: 1px solid var(--borde); border-radius: 16px; display: flex; flex-direction: column; height: 620px; overflow: hidden; }
-
-  /* Chat header */
   .chat-header { padding: 13px 18px; background: var(--gris2); border-bottom: 1px solid var(--borde); display: flex; align-items: center; gap: 12px; }
-  .logo-icon { width: 38px; height: 38px; border-radius: 9px; background: var(--verde); display: flex; align-items: center; justify-content: center; font-weight: 900; color: #000; font-size: 18px; letter-spacing: 1px; flex-shrink: 0; }
+  .logo-icon { width: 38px; height: 38px; border-radius: 9px; background: var(--verde); display: flex; align-items: center; justify-content: center; font-weight: 900; color: #000; font-size: 18px; flex-shrink: 0; }
   .chat-header .info h2 { color: var(--verde); font-size: 17px; font-weight: 900; letter-spacing: 2px; }
   .chat-header .info p { color: var(--texto2); font-size: 11px; margin-top: 1px; }
   .badge-pago { margin-left: auto; background: #1a3a10; color: var(--verde); font-size: 11px; padding: 3px 12px; border-radius: 20px; font-weight: 700; display: none; }
-
-  /* Mensajes */
   .messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; background: var(--negro); }
   .messages::-webkit-scrollbar { width: 4px; }
-  .messages::-webkit-scrollbar-track { background: transparent; }
   .messages::-webkit-scrollbar-thumb { background: var(--borde); border-radius: 4px; }
   .msg-row { display: flex; align-items: flex-end; gap: 8px; }
   .msg-row.user { justify-content: flex-end; }
@@ -51,8 +40,6 @@
   .bubble.bot { background: var(--gris2); border: 1px solid var(--borde); border-bottom-left-radius: 4px; color: var(--texto); }
   .bubble.user { background: var(--verde); color: #000; font-weight: 600; border-bottom-right-radius: 4px; }
   .typing-bubble { background: var(--gris2); border: 1px solid var(--borde); border-radius: 16px; border-bottom-left-radius: 4px; padding: 10px 16px; font-size: 13px; color: var(--texto2); }
-
-  /* Tarjeta pago */
   .pago-card { background: var(--gris2); border: 2px solid var(--verde); border-radius: 14px; padding: 16px; max-width: 73%; }
   .pago-card h3 { font-size: 14px; color: var(--texto); font-weight: 700; margin-bottom: 4px; }
   .pago-card p { font-size: 12.5px; color: var(--texto2); margin-bottom: 12px; }
@@ -60,19 +47,13 @@
   .btn-mp { background: var(--verde); color: #000; border: none; border-radius: 8px; padding: 12px; font-size: 14px; font-weight: 900; cursor: pointer; width: 100%; letter-spacing: 0.5px; text-transform: uppercase; }
   .btn-mp:hover { background: var(--verde-osc); }
   .nota-mp { font-size: 10.5px; color: var(--texto2); text-align: center; margin-top: 8px; }
-
-  /* Tarjeta descargo */
   .descargo-card { background: #0d1f0f; border: 2px solid var(--verde); border-radius: 14px; padding: 16px; max-width: 73%; }
   .descargo-card h3 { font-size: 14px; color: var(--verde); font-weight: 700; margin-bottom: 10px; }
   .btn-pdf { background: var(--verde); color: #000; border: none; border-radius: 8px; padding: 12px; font-size: 14px; font-weight: 900; cursor: pointer; width: 100%; text-transform: uppercase; letter-spacing: 0.5px; }
   .btn-pdf:hover { background: var(--verde-osc); }
-
-  /* Preview adjunto */
   .adjunto-preview { display: none; align-items: center; gap: 10px; padding: 8px 14px; background: var(--gris3); border-top: 1px solid var(--borde); }
   .adjunto-preview span { font-size: 13px; color: var(--texto); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .adjunto-preview button { background: none; border: none; cursor: pointer; font-size: 18px; color: var(--texto2); }
-
-  /* Input */
   .input-area { padding: 10px 14px; border-top: 1px solid var(--borde); display: flex; gap: 8px; align-items: flex-end; background: var(--gris2); }
   .btn-clip { height: 46px; padding: 0 13px; border-radius: 8px; border: 1px solid var(--borde); background: var(--gris3); cursor: pointer; font-size: 19px; flex-shrink: 0; color: var(--texto); }
   .btn-clip:hover { border-color: var(--verde); }
@@ -82,8 +63,6 @@
   .btn-send { height: 46px; padding: 0 18px; border-radius: 8px; background: var(--verde); color: #000; border: none; font-size: 13px; font-weight: 900; cursor: pointer; flex-shrink: 0; text-transform: uppercase; letter-spacing: 0.5px; }
   .btn-send:disabled { background: var(--gris3); color: var(--texto2); cursor: not-allowed; border: 1px solid var(--borde); }
   .btn-send:not(:disabled):hover { background: var(--verde-osc); }
-
-  /* Panel admin */
   .admin-panel { width: 100%; max-width: 740px; background: var(--negro); border: 1px solid var(--borde); border-radius: 16px; padding: 20px; margin-top: 14px; display: none; }
   .admin-panel h2 { font-size: 16px; font-weight: 900; color: var(--verde); margin-bottom: 16px; letter-spacing: 1px; }
   .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
@@ -96,11 +75,6 @@
   .estado { font-size: 10px; padding: 3px 10px; border-radius: 20px; font-weight: 700; }
   .estado.pagado { background: #1a3a10; color: var(--verde); }
   .estado.pendiente { background: #3a2e00; color: #f0b429; }
-
-  @media (max-width: 600px) {
-    .stats { grid-template-columns: 1fr 1fr; }
-    .chat-box { height: 560px; }
-  }
 </style>
 </head>
 <body>
@@ -123,17 +97,11 @@
     </div>
     <span id="badge-pago" class="badge-pago">✓ Pago confirmado</span>
   </div>
-
-  <div class="messages" id="messages"
-    ondragover="event.preventDefault()"
-    ondrop="event.preventDefault(); handleFile(event.dataTransfer.files[0])">
-  </div>
-
+  <div class="messages" id="messages" ondragover="event.preventDefault()" ondrop="event.preventDefault(); handleFile(event.dataTransfer.files[0])"></div>
   <div class="adjunto-preview" id="adjunto-preview">
     <span id="adjunto-nombre"></span>
     <button onclick="quitarAdjunto()">✕</button>
   </div>
-
   <div class="input-area">
     <input type="file" id="file-input" accept="image/*,application/pdf" style="display:none" onchange="handleFile(this.files[0])"/>
     <button class="btn-clip" onclick="document.getElementById('file-input').click()" title="Adjuntar foto o PDF de la multa">📎</button>
@@ -149,68 +117,37 @@
     <div class="stat"><div class="num" id="stat-pagados">0</div><div class="lbl">Pagados</div></div>
     <div class="stat"><div class="num" id="stat-recaudado">$0</div><div class="lbl">Recaudado</div></div>
   </div>
-  <div id="lista-casos">
-    <p style="color:var(--texto2);font-size:13px;text-align:center;padding:24px">Aún no hay casos registrados.</p>
-  </div>
+  <div id="lista-casos"><p style="color:var(--texto2);font-size:13px;text-align:center;padding:24px">Aún no hay casos registrados.</p></div>
 </div>
 
 <script>
-// ── CONFIG ────────────────────────────────────────────────────────────────────
 const PRECIO = 5000;
 
-const SYSTEM_PROMPT = `Sos ZAFÁ, un asistente legal especializado en infracciones de tránsito de la República Argentina. Fuiste creado para ayudar a ciudadanos a analizar multas y actas de infracción, detectar irregularidades legales y preparar descargos formales listos para presentar ante el organismo competente.
+const SYSTEM_PROMPT = `Sos ZAFÁ, un asistente legal especializado en infracciones de tránsito de la República Argentina.
 
-PERSONALIDAD Y TONO:
-- Hablás en español rioplatense (vos, no tú).
-- Sos profesional pero accesible. Explicás en lenguaje simple, sin tecnicismos innecesarios.
-- Sos directo y honesto. Si una multa es válida, lo decís claramente.
-- Nunca prometés resultados garantizados.
-- Siempre aclarás al final: "Este análisis es orientativo y no reemplaza el asesoramiento de un abogado matriculado."
+PERSONALIDAD: Hablás en español rioplatense (vos, no tú). Sos profesional pero accesible. Directo y honesto. Nunca prometés resultados garantizados. Siempre aclarás: "Este análisis es orientativo y no reemplaza el asesoramiento de un abogado matriculado."
 
-FLUJO DE CONVERSACIÓN:
+FLUJO ESTRICTO — SEGUILO SIEMPRE:
 
-PASO 1 — RECEPCIÓN: Cuando el usuario envíe foto, imagen, PDF de una multa o describa sus datos, procedés al análisis. Si saluda sin enviar multa, pedís amablemente que la comparta.
+PASO 1 — SALUDO/CONSULTA GENERAL:
+Si el usuario saluda ("hola", "buenas", "cómo funciona", etc.) simplemente explicá qué hace ZAFÁ y pedile que comparta la multa. NUNCA ofrezcas el descargo ni menciones el pago en este paso.
 
-PASO 2 — ANÁLISIS LEGAL con este marco normativo:
+PASO 2 — RECEPCIÓN DE MULTA:
+Cuando el usuario envíe foto, PDF o describa los datos de una multa, analizala completamente.
 
-NORMATIVA NACIONAL:
+PASO 3 — ANÁLISIS LEGAL:
+Analizá con este marco normativo:
 - Ley Nacional de Tránsito N° 24.449 y Decreto Reglamentario N° 779/95
 - Ley Nacional de Procedimiento Administrativo N° 19.549
 - Principios del Derecho Administrativo: legalidad, debido proceso, razonabilidad, proporcionalidad
+- Normativa provincial según jurisdicción (Buenos Aires: Ley 13.927, CABA: Ley 2.148, Córdoba: Ley 8.560, Santa Fe: Ley 13.169, Mendoza: Ley 6.082)
+- Ordenanzas municipales del lugar donde fue labrada el acta
 
-NORMATIVA PROVINCIAL según jurisdicción detectada:
-- Buenos Aires: Ley 13.927 y Decreto 532/09
-- CABA: Ley 2.148 (Código de Tránsito y Transporte)
-- Córdoba: Ley 8.560
-- Santa Fe: Ley 13.169
-- Mendoza: Ley 6.082
-- Otras: normativa provincial correspondiente + Ley 24.449 como marco supletorio
+VICIOS FORMALES: falta de firma/sello del agente, datos incompletos (fecha/hora/lugar/número de acta), identificación incorrecta del vehículo o conductor, artículo que no corresponde al hecho, notificación defectuosa, incompetencia del agente, falta de testigos, descripción vaga, prescripción, duplicidad de actas, falta de habilitación de instrumentos de medición.
 
-NORMATIVA MUNICIPAL: ordenanzas del municipio donde fue labrada el acta + competencia del agente según jurisdicción.
+VICIOS SUSTANCIALES: hecho que no encuadra en el artículo citado, error en calificación, violación al principio de proporcionalidad, violación al debido proceso.
 
-VICIOS FORMALES A DETECTAR:
-1. Falta o ilegibilidad de firma del agente labrador
-2. Falta de sello o identificación del agente
-3. Datos incompletos: fecha, hora, lugar, número de acta
-4. Identificación incorrecta del vehículo o conductor
-5. Artículo infringido no corresponde al hecho descripto
-6. Notificación defectuosa o fuera de plazo
-7. Incompetencia del agente (ej: agente municipal en ruta nacional)
-8. Ausencia de testigos cuando la norma lo requiere
-9. Descripción vaga o contradictoria del hecho
-10. Prescripción de la infracción
-11. Duplicidad de actas por el mismo hecho
-12. Falta de habilitación del instrumento de medición (radar, alcoholímetro, etc.)
-13. Vicios en la cadena de notificación
-
-VICIOS SUSTANCIALES A DETECTAR:
-1. El hecho no encuadra en el artículo citado
-2. Ausencia de elemento subjetivo cuando la norma lo requiere
-3. Error en la calificación de la infracción
-4. Vulneración del principio de proporcionalidad en la sanción
-5. Violación al debido proceso
-
-PASO 3 — PRESENTACIÓN DEL ANÁLISIS en este formato:
+PASO 4 — PRESENTAR EL ANÁLISIS así:
 
 📋 ANÁLISIS DE LA INFRACCIÓN
 
@@ -226,23 +163,28 @@ PASO 3 — PRESENTACIÓN DEL ANÁLISIS en este formato:
 📌 CONCLUSIÓN:
 [recomendación clara]
 
-Si encontrás irregularidades, agregás al final:
-"¿Querés que prepare el descargo formal para presentar? Por un pago único podés obtener el documento listo para entregar."
+PASO 5 — OFERTA DEL DESCARGO:
+SOLO si encontraste irregularidades reales, al final del análisis preguntás EXACTAMENTE esto:
+"¿Querés que prepare el descargo formal para presentar ante el organismo? Por $5.000 obtenés el documento completo listo para entregar."
 
-PASO 4 — Si el usuario acepta, informás que debe realizar el pago y que luego pedirás sus datos.
+Si NO hay irregularidades claras, decíselo honestamente y NO ofrezcas el descargo.
 
-PASO 5 — DESPUÉS DEL PAGO CONFIRMADO, pedís estos datos:
+PASO 6 — ESPERAR CONFIRMACIÓN:
+Esperá que el usuario responda afirmativamente ("sí", "quiero", "dale", "ok", "bueno", "claro", "adelante"). Solo entonces el sistema activa el pago. No repitas la oferta de pago, solo esperá la respuesta.
+
+PASO 7 — DESPUÉS DEL PAGO CONFIRMADO, pedís los datos:
 1. Nombre y apellido completo
-2. DNI (número)
+2. DNI
 3. Domicilio completo (calle, número, localidad, provincia)
 4. Dominio/patente del vehículo
 5. Jurisdicción donde fue labrada la multa
-6. Número de acta (si no lo tenés)
-7. Fecha límite para presentar el descargo (si la conoce)
+6. Número de acta
+7. Fecha límite para presentar (si la conoce)
 
-PASO 6 — GENERACIÓN DEL DESCARGO: Con todos los datos, generás el descargo formal completo. Marcalo con INICIO_DESCARGO y FIN_DESCARGO exactamente así.
+PASO 8 — GENERACIÓN DEL DESCARGO:
+Con todos los datos generás el descargo completo. Marcalo con INICIO_DESCARGO y FIN_DESCARGO.
 
-El descargo debe tener esta estructura:
+Estructura del descargo:
 
 INICIO_DESCARGO
 [CIUDAD], [FECHA COMPLETA]
@@ -280,29 +222,26 @@ DNI: [DNI]
 Domicilio: [DOMICILIO]
 FIN_DESCARGO
 
-REGLAS IMPORTANTES:
-- NUNCA inventés datos que no estén en el acta o que el usuario no te haya dado.
-- Si no podés leer bien la imagen, pedís que la reenvíen o describan los datos.
-- Si la multa es válida y sin vicios, lo decís honestamente sin inventar irregularidades.
-- Siempre identificá la jurisdicción para aplicar la normativa correcta.
-- Recordá siempre que el descargo es orientativo y recomendás consultar un abogado para casos complejos.`;
+REGLAS CRÍTICAS:
+- NUNCA ofrezcas el pago si el usuario solo saludó o hizo una consulta general.
+- NUNCA muestres el botón de pago antes de analizar una multa real.
+- NUNCA inventés irregularidades que no existen.
+- Si no podés leer bien la imagen, pedí que la reenvíen o describan los datos.
+- Siempre recomendá consultar un abogado para casos complejos.`;
 
-// ── ESTADO ────────────────────────────────────────────────────────────────────
 let historial = [];
 let adjunto = null;
-let step = "chat";
+let step = "chat"; // chat → analisis → ofrecer_pago → datos → descargo
 let pagoConfirmado = false;
 let datosCliente = {};
 let casos = [];
 let descargoPDF = null;
 let adminVisible = false;
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
 window.onload = () => {
-  agregarMensaje("bot", "¡Hola! Soy ZAFÁ, tu asistente legal para infracciones de tránsito.\n\nAnalizá tu multa de forma gratuita: subí una foto, un PDF, o contame los detalles del acta.\n\nSi encontramos irregularidades, preparamos tu descargo formal en PDF, listo para presentar ante el organismo correspondiente.\n\n¿Cómo querés empezar?");
+  agregarMensaje("bot", "¡Hola! Soy ZAFÁ, tu asistente legal para infracciones de tránsito.\n\nAnalizá tu multa de forma gratuita: subí una foto, un PDF, o contame los detalles del acta.\n\nSi encontramos irregularidades, te ofrezco preparar tu descargo formal en PDF, listo para presentar ante el organismo correspondiente.\n\n¿Cómo querés empezar?");
 };
 
-// ── MENSAJES ──────────────────────────────────────────────────────────────────
 function agregarMensaje(rol, texto, tipo) {
   const cont = document.getElementById("messages");
   const row = document.createElement("div");
@@ -335,12 +274,10 @@ function agregarMensaje(rol, texto, tipo) {
     bbl.textContent = texto;
     row.appendChild(bbl);
   }
-
   cont.appendChild(row);
   cont.scrollTop = cont.scrollHeight;
 }
 
-// ── ENVIAR ────────────────────────────────────────────────────────────────────
 async function sendMessage() {
   const txt = document.getElementById("input-text").value.trim();
   if (!txt && !adjunto) return;
@@ -355,7 +292,7 @@ async function sendMessage() {
     content = [];
     if (adjunto.tipo === "image") content.push({ type: "image", source: { type: "base64", media_type: adjunto.mediaType, data: adjunto.data } });
     else content.push({ type: "document", source: { type: "base64", media_type: "application/pdf", data: adjunto.data } });
-    content.push({ type: "text", text: txt || "Analizá esta multa de tránsito. Detectá todas las irregularidades legales que encuentres." });
+    content.push({ type: "text", text: txt || "Analizá esta multa de tránsito. Detectá todas las irregularidades legales." });
   } else {
     content = txt;
   }
@@ -389,11 +326,22 @@ async function sendMessage() {
     agregarMensaje("bot", displayReply);
 
     const low = reply.toLowerCase();
-    if (step === "chat" && !pagoConfirmado && (low.includes("irregularidad") || low.includes("vicio") || low.includes("nulidad") || low.includes("impugnar") || low.includes("descargo"))) {
-      step = "ofrecer_pago";
+    const txtLow = txt.toLowerCase();
+
+    // PASO: después de analizar multa, si la IA ofrece descargo → paso "analisis"
+    if (step === "chat" && !pagoConfirmado && low.includes("querés que prepare el descargo")) {
+      step = "analisis";
       casos.push({ nombre: "", fecha: new Date().toLocaleDateString("es-AR"), pagado: false });
       actualizarAdmin();
-      setTimeout(() => agregarMensaje("bot", null, "pago"), 400);
+    }
+
+    // PASO: usuario confirma que quiere el descargo → mostrar botón de pago
+    if (step === "analisis" && !pagoConfirmado) {
+      const confirmo = txtLow.includes("sí") || txtLow.includes("si") || txtLow.includes("quiero") || txtLow.includes("dale") || txtLow.includes("ok") || txtLow.includes("bueno") || txtLow.includes("claro") || txtLow.includes("adelante") || txtLow.includes("quero") || txtLow.includes("yes");
+      if (confirmo) {
+        step = "ofrecer_pago";
+        setTimeout(() => agregarMensaje("bot", null, "pago"), 400);
+      }
     }
 
     if (descargoPDF) {
@@ -404,16 +352,14 @@ async function sendMessage() {
     document.getElementById("typing")?.remove();
     agregarMensaje("bot", "Error de conexión. Verificá tu internet e intentá de nuevo.");
   }
-
   document.getElementById("btn-send").disabled = false;
 }
 
 function handleKey(e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
 
-// ── ARCHIVO ───────────────────────────────────────────────────────────────────
 function handleFile(file) {
   if (!file) return;
-  if (!file.type.startsWith("image/") && file.type !== "application/pdf") { alert("Solo se aceptan imágenes (JPG, PNG) o PDF."); return; }
+  if (!file.type.startsWith("image/") && file.type !== "application/pdf") { alert("Solo se aceptan imágenes o PDF."); return; }
   const reader = new FileReader();
   reader.onload = e => {
     adjunto = { tipo: file.type.startsWith("image/") ? "image" : "pdf", data: e.target.result.split(",")[1], name: file.name, mediaType: file.type };
@@ -431,7 +377,6 @@ function quitarAdjunto() {
   document.getElementById("input-text").placeholder = "Describí tu multa o adjuntá una foto/PDF...";
 }
 
-// ── MERCADO PAGO ──────────────────────────────────────────────────────────────
 async function iniciarPago() {
   try {
     const res = await fetch("/api/crear-pago", {
@@ -453,12 +398,11 @@ function confirmarPago() {
   if (casos.length) casos[casos.length - 1].pagado = true;
   document.getElementById("badge-pago").style.display = "inline-block";
   actualizarAdmin();
-  const txt = "Pago recibido ✅\n\nPara preparar tu descargo necesito tus datos personales:\n\n1. Nombre y apellido completo\n2. DNI\n3. Domicilio completo (calle, número, localidad, provincia)\n4. Dominio/patente del vehículo\n5. Jurisdicción donde fue labrada la multa (ciudad y provincia)\n6. Número de acta (si lo tenés a mano)\n7. Fecha límite para presentar el descargo (si la conocés)\n\nEscribí todos los datos juntos en tu próximo mensaje.";
+  const txt = "Pago recibido ✅\n\nPara preparar tu descargo necesito tus datos personales:\n\n1. Nombre y apellido completo\n2. DNI\n3. Domicilio completo (calle, número, localidad, provincia)\n4. Dominio/patente del vehículo\n5. Jurisdicción donde fue labrada la multa (ciudad y provincia)\n6. Número de acta (si lo tenés)\n7. Fecha límite para presentar el descargo (si la conocés)\n\nEscribí todos los datos en tu próximo mensaje.";
   historial.push({ role: "assistant", content: txt });
   agregarMensaje("bot", txt);
 }
 
-// ── DATOS CLIENTE ─────────────────────────────────────────────────────────────
 function extraerDatos(texto) {
   const lineas = texto.split("\n");
   lineas.forEach(l => {
@@ -467,13 +411,12 @@ function extraerDatos(texto) {
     if (low.includes("nombre") || low.includes("apellido")) datosCliente.nombre = val;
     if (low.includes("dni")) datosCliente.dni = val.replace(/\D/g, "");
     if (low.includes("domicilio") || low.includes("direcci")) datosCliente.domicilio = val;
-    if (low.includes("dominio") || low.includes("patente") || low.includes("matrícula") || low.includes("matricula")) datosCliente.dominio = val.toUpperCase();
+    if (low.includes("dominio") || low.includes("patente") || low.includes("matrícula")) datosCliente.dominio = val.toUpperCase();
     if (low.includes("jurisdicci") || low.includes("ciudad") || low.includes("provincia")) datosCliente.jurisdiccion = val;
   });
   if (casos.length && datosCliente.nombre) { casos[casos.length - 1].nombre = datosCliente.nombre; actualizarAdmin(); }
 }
 
-// ── PDF ───────────────────────────────────────────────────────────────────────
 function imprimirPDF() {
   if (!descargoPDF) return;
   const d = datosCliente;
@@ -508,7 +451,7 @@ function imprimirPDF() {
   </div>
   <div class="cuerpo">${descargoPDF}</div>
   <div class="firma-area"><div class="firma"><p style="margin:0">${d.nombre||"Firma del presentante"}</p><p style="margin:4px 0 0;font-size:10pt">DNI: ${d.dni||"—"}</p></div></div>
-  <div class="footer">Documento generado por ZAFÁ · Solo para uso legal del presentante · Este documento no constituye asesoramiento jurídico formal · Se recomienda consultar con un abogado matriculado</div>
+  <div class="footer">Documento generado por ZAFÁ · Solo para uso legal del presentante · No constituye asesoramiento jurídico formal · Se recomienda consultar con un abogado matriculado</div>
   </div></body></html>`;
   const w = window.open("", "_blank");
   w.document.write(html);
@@ -517,7 +460,6 @@ function imprimirPDF() {
   setTimeout(() => w.print(), 700);
 }
 
-// ── ADMIN ─────────────────────────────────────────────────────────────────────
 function toggleAdmin() {
   adminVisible = !adminVisible;
   document.getElementById("admin-panel").style.display = adminVisible ? "block" : "none";
