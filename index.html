@@ -20,15 +20,20 @@
   .page-header { text-align: center; margin-bottom: 16px; }
   .page-header h1 { font-size: 36px; font-weight: 900; color: var(--verde); letter-spacing: 4px; text-transform: uppercase; }
   .page-header p { font-size: 13px; color: var(--texto2); margin-top: 4px; letter-spacing: 1px; }
-  .admin-toggle { margin-bottom: 10px; text-align: right; width: 100%; max-width: 740px; }
-  .admin-toggle button { background: var(--gris2); border: 1px solid var(--borde); border-radius: 8px; padding: 6px 14px; font-size: 12px; cursor: pointer; color: var(--texto2); }
-  .admin-toggle button:hover { color: var(--texto); border-color: var(--verde); }
-  .chat-box { width: 100%; max-width: 740px; background: var(--negro); border: 1px solid var(--borde); border-radius: 16px; display: flex; flex-direction: column; height: 620px; overflow: hidden; }
+
+  /* Barra de herramientas */
+  .toolbar { display: flex; gap: 8px; margin-bottom: 10px; width: 100%; max-width: 740px; }
+  .toolbar button { background: var(--gris2); border: 1px solid var(--borde); border-radius: 8px; padding: 7px 14px; font-size: 12px; cursor: pointer; color: var(--texto2); flex: 1; }
+  .toolbar button:hover { color: var(--texto); border-color: var(--verde); }
+  .toolbar button.active { color: var(--verde); border-color: var(--verde); }
+
+  .chat-box { width: 100%; max-width: 740px; background: var(--negro); border: 1px solid var(--borde); border-radius: 16px; display: flex; flex-direction: column; height: 640px; overflow: hidden; }
   .chat-header { padding: 13px 18px; background: var(--gris2); border-bottom: 1px solid var(--borde); display: flex; align-items: center; gap: 12px; }
   .logo-icon { width: 38px; height: 38px; border-radius: 9px; background: var(--verde); display: flex; align-items: center; justify-content: center; font-weight: 900; color: #000; font-size: 18px; flex-shrink: 0; }
   .chat-header .info h2 { color: var(--verde); font-size: 17px; font-weight: 900; letter-spacing: 2px; }
   .chat-header .info p { color: var(--texto2); font-size: 11px; margin-top: 1px; }
   .badge-pago { margin-left: auto; background: #1a3a10; color: var(--verde); font-size: 11px; padding: 3px 12px; border-radius: 20px; font-weight: 700; display: none; }
+
   .messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; background: var(--negro); }
   .messages::-webkit-scrollbar { width: 4px; }
   .messages::-webkit-scrollbar-thumb { background: var(--borde); border-radius: 4px; }
@@ -39,41 +44,65 @@
   .bubble.bot { background: var(--gris2); border: 1px solid var(--borde); border-bottom-left-radius: 4px; color: var(--texto); }
   .bubble.user { background: var(--verde); color: #000; font-weight: 600; border-bottom-right-radius: 4px; }
   .typing-bubble { background: var(--gris2); border: 1px solid var(--borde); border-radius: 16px; border-bottom-left-radius: 4px; padding: 10px 16px; font-size: 13px; color: var(--texto2); }
+
+  /* Tarjeta consulta multas */
+  .consulta-card { background: var(--gris2); border: 1px solid var(--borde); border-radius: 14px; padding: 16px; width: 100%; max-width: 740px; margin-bottom: 0; }
+  .consulta-card h3 { font-size: 14px; color: var(--verde); font-weight: 700; margin-bottom: 12px; }
+  .consulta-form { display: flex; gap: 8px; margin-bottom: 12px; }
+  .consulta-form input { flex: 1; background: var(--gris3); border: 1px solid var(--borde); border-radius: 8px; padding: 10px 12px; color: var(--texto); font-size: 14px; text-transform: uppercase; }
+  .consulta-form input:focus { outline: none; border-color: var(--verde); }
+  .consulta-form input::placeholder { color: var(--texto2); text-transform: none; }
+  .consulta-form select { background: var(--gris3); border: 1px solid var(--borde); border-radius: 8px; padding: 10px 12px; color: var(--texto); font-size: 13px; }
+  .btn-consultar { background: var(--verde); color: #000; border: none; border-radius: 8px; padding: 10px 18px; font-size: 13px; font-weight: 900; cursor: pointer; text-transform: uppercase; white-space: nowrap; }
+  .btn-consultar:hover { background: var(--verde-osc); }
+  .resultado-multas { margin-top: 4px; }
+  .multa-item { background: var(--gris3); border: 1px solid var(--borde); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; }
+  .multa-item .multa-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .multa-item .acta { font-size: 13px; font-weight: 700; color: var(--verde); }
+  .multa-item .estado-badge { font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 700; background: #3a0000; color: #ff6b6b; }
+  .multa-item .multa-dato { font-size: 12px; color: var(--texto2); margin-top: 2px; }
+  .multa-item .multa-dato span { color: var(--texto); }
+  .btn-analizar-multa { background: var(--verde); color: #000; border: none; border-radius: 6px; padding: 7px 14px; font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; width: 100%; }
+  .link-manual { font-size: 12px; color: var(--texto2); margin-top: 8px; }
+  .link-manual a { color: var(--verde); text-decoration: none; }
+  .sin-multas { text-align: center; padding: 20px; color: var(--texto2); font-size: 13px; }
+
   .pago-card { background: var(--gris2); border: 2px solid var(--verde); border-radius: 14px; padding: 16px; max-width: 73%; }
   .pago-card h3 { font-size: 14px; color: var(--texto); font-weight: 700; margin-bottom: 4px; }
   .pago-card p { font-size: 12.5px; color: var(--texto2); margin-bottom: 12px; }
   .pago-card .precio { font-size: 28px; font-weight: 900; color: var(--verde); margin-bottom: 14px; }
-  .btn-mp { background: var(--verde); color: #000; border: none; border-radius: 8px; padding: 12px; font-size: 14px; font-weight: 900; cursor: pointer; width: 100%; letter-spacing: 0.5px; text-transform: uppercase; }
+  .btn-mp { background: var(--verde); color: #000; border: none; border-radius: 8px; padding: 12px; font-size: 14px; font-weight: 900; cursor: pointer; width: 100%; text-transform: uppercase; }
   .btn-mp:hover { background: var(--verde-osc); }
   .nota-mp { font-size: 10.5px; color: var(--texto2); text-align: center; margin-top: 8px; }
   .descargo-card { background: #0d1f0f; border: 2px solid var(--verde); border-radius: 14px; padding: 16px; max-width: 73%; }
   .descargo-card h3 { font-size: 14px; color: var(--verde); font-weight: 700; margin-bottom: 10px; }
-  .btn-pdf { background: var(--verde); color: #000; border: none; border-radius: 8px; padding: 12px; font-size: 14px; font-weight: 900; cursor: pointer; width: 100%; text-transform: uppercase; letter-spacing: 0.5px; }
-  .btn-pdf:hover { background: var(--verde-osc); }
+  .btn-pdf { background: var(--verde); color: #000; border: none; border-radius: 8px; padding: 12px; font-size: 14px; font-weight: 900; cursor: pointer; width: 100%; text-transform: uppercase; }
+
   .adjunto-preview { display: none; align-items: center; gap: 10px; padding: 8px 14px; background: var(--gris3); border-top: 1px solid var(--borde); }
   .adjunto-preview span { font-size: 13px; color: var(--texto); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .adjunto-preview button { background: none; border: none; cursor: pointer; font-size: 18px; color: var(--texto2); }
   .input-area { padding: 10px 14px; border-top: 1px solid var(--borde); display: flex; gap: 8px; align-items: flex-end; background: var(--gris2); }
-  .btn-clip { height: 46px; padding: 0 13px; border-radius: 8px; border: 1px solid var(--borde); background: var(--gris3); cursor: pointer; font-size: 19px; flex-shrink: 0; color: var(--texto); }
+  .btn-clip { height: 46px; padding: 0 13px; border-radius: 8px; border: 1px solid var(--borde); background: var(--gris3); cursor: pointer; font-size: 19px; flex-shrink: 0; }
   .btn-clip:hover { border-color: var(--verde); }
   .input-area textarea { flex: 1; resize: none; font-size: 13.5px; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--borde); background: var(--gris3); color: var(--texto); font-family: inherit; line-height: 1.5; }
   .input-area textarea:focus { outline: none; border-color: var(--verde); }
   .input-area textarea::placeholder { color: var(--texto2); }
-  .btn-send { height: 46px; padding: 0 18px; border-radius: 8px; background: var(--verde); color: #000; border: none; font-size: 13px; font-weight: 900; cursor: pointer; flex-shrink: 0; text-transform: uppercase; letter-spacing: 0.5px; }
+  .btn-send { height: 46px; padding: 0 18px; border-radius: 8px; background: var(--verde); color: #000; border: none; font-size: 13px; font-weight: 900; cursor: pointer; text-transform: uppercase; }
   .btn-send:disabled { background: var(--gris3); color: var(--texto2); cursor: not-allowed; border: 1px solid var(--borde); }
-  .btn-send:not(:disabled):hover { background: var(--verde-osc); }
+
+  /* Admin */
   .admin-panel { width: 100%; max-width: 740px; background: var(--negro); border: 1px solid var(--borde); border-radius: 16px; padding: 20px; margin-top: 14px; display: none; }
-  .admin-panel h2 { font-size: 16px; font-weight: 900; color: var(--verde); margin-bottom: 16px; letter-spacing: 1px; }
+  .admin-panel h2 { font-size: 16px; font-weight: 900; color: var(--verde); margin-bottom: 16px; }
   .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
   .stat { background: var(--gris2); border-radius: 12px; padding: 16px; text-align: center; border: 1px solid var(--borde); }
   .stat .num { font-size: 26px; font-weight: 900; color: var(--verde); }
   .stat .lbl { font-size: 11px; color: var(--texto2); margin-top: 3px; }
   .caso { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--borde); border-radius: 10px; margin-bottom: 8px; background: var(--gris2); }
-  .caso .nombre { flex: 1; font-size: 13.5px; font-weight: 600; color: var(--texto); }
-  .caso .fecha { font-size: 11px; color: var(--texto2); margin-top: 2px; }
-  .estado { font-size: 10px; padding: 3px 10px; border-radius: 20px; font-weight: 700; }
-  .estado.pagado { background: #1a3a10; color: var(--verde); }
-  .estado.pendiente { background: #3a2e00; color: #f0b429; }
+  .caso .cnombre { flex: 1; font-size: 13.5px; font-weight: 600; color: var(--texto); }
+  .caso .cfecha { font-size: 11px; color: var(--texto2); margin-top: 2px; }
+  .cestado { font-size: 10px; padding: 3px 10px; border-radius: 20px; font-weight: 700; }
+  .cestado.pagado { background: #1a3a10; color: var(--verde); }
+  .cestado.pendiente { background: #3a2e00; color: #f0b429; }
 </style>
 </head>
 <body>
@@ -83,11 +112,14 @@
   <p>Asistente legal · Multas de tránsito · Argentina</p>
 </div>
 
-<div class="admin-toggle">
-  <button onclick="toggleAdmin()">📊 Panel de administración</button>
+<div class="toolbar">
+  <button onclick="setVista('chat')" id="btn-vista-chat" class="active">💬 Asistente Legal</button>
+  <button onclick="setVista('consulta')" id="btn-vista-consulta">🔍 Consultar Multas por Patente</button>
+  <button onclick="setVista('admin')" id="btn-vista-admin">📊 Administración</button>
 </div>
 
-<div class="chat-box">
+<!-- CHAT -->
+<div class="chat-box" id="vista-chat">
   <div class="chat-header">
     <div class="logo-icon">Z</div>
     <div class="info">
@@ -109,38 +141,63 @@
   </div>
 </div>
 
-<div class="admin-panel" id="admin-panel">
-  <h2>📊 PANEL DE ADMINISTRACIÓN</h2>
-  <div class="stats">
-    <div class="stat"><div class="num" id="stat-total">0</div><div class="lbl">Total casos</div></div>
-    <div class="stat"><div class="num" id="stat-pagados">0</div><div class="lbl">Pagados</div></div>
-    <div class="stat"><div class="num" id="stat-recaudado">$0</div><div class="lbl">Recaudado</div></div>
+<!-- CONSULTA MULTAS -->
+<div id="vista-consulta" style="display:none; width:100%; max-width:740px;">
+  <div class="consulta-card">
+    <h3>🔍 Consulta de multas por patente</h3>
+    <div class="consulta-form">
+      <input type="text" id="input-patente" placeholder="Ingresá la patente (ej: ABC123)" maxlength="8"/>
+      <select id="select-jurisdiccion">
+        <option value="ambas">CABA + PBA</option>
+        <option value="caba">Solo CABA</option>
+        <option value="pba">Solo PBA</option>
+      </select>
+      <button class="btn-consultar" onclick="consultarMultas()">Consultar</button>
+    </div>
+    <div id="resultado-multas" class="resultado-multas"></div>
   </div>
-  <div id="lista-casos"><p style="color:var(--texto2);font-size:13px;text-align:center;padding:24px">Aún no hay casos registrados.</p></div>
+</div>
+
+<!-- ADMIN -->
+<div id="vista-admin" style="display:none; width:100%; max-width:740px;">
+  <div class="admin-panel" style="display:block; margin-top:0;">
+    <h2>📊 PANEL DE ADMINISTRACIÓN</h2>
+    <div class="stats">
+      <div class="stat"><div class="num" id="stat-total">0</div><div class="lbl">Total casos</div></div>
+      <div class="stat"><div class="num" id="stat-pagados">0</div><div class="lbl">Pagados</div></div>
+      <div class="stat"><div class="num" id="stat-recaudado">$0</div><div class="lbl">Recaudado</div></div>
+    </div>
+    <div id="lista-casos"><p style="color:var(--texto2);font-size:13px;text-align:center;padding:24px">Aún no hay casos registrados.</p></div>
+  </div>
 </div>
 
 <script>
 const PRECIO = 5000;
 
-const SYSTEM_PROMPT = `Sos ZAFÁ, un asistente legal especializado en infracciones de tránsito de la República Argentina.
+const SYSTEM_PROMPT = `Sos ZAFÁ, un asistente legal especializado en infracciones de tránsito de la República Argentina. Sos muy bueno identificando lo que el usuario quiere decir aunque lo escriba con errores, abreviaciones o de forma informal.
 
-PERSONALIDAD: Hablás en español rioplatense. Sos profesional pero accesible. Directo y honesto. Siempre aclarás al final: "Este análisis es orientativo y no reemplaza el asesoramiento de un abogado matriculado."
+IDENTIFICACIÓN DE INTENCIÓN:
+- Si el usuario saluda o pregunta cómo funciona → explicá qué hace ZAFÁ, mencioná que puede subir foto/PDF de la multa O consultar multas por patente en la pestaña "Consultar Multas"
+- Si el usuario escribe una patente/dominio (formato: letras y números) → ofrecé consultar sus multas
+- Si el usuario menciona una multa, infracción, acta, fotomulta, radar → pedile que suba la foto o PDF
+- Si el usuario dice "sí", "dale", "quiero", "ok" después de que ofreciste algo → avanzá con eso
+- Si el usuario pregunta por costos o precios → explicá que el análisis es gratis y el descargo cuesta $5.000
 
-FLUJO ESTRICTO:
+FLUJO PARA ANÁLISIS DE MULTA:
 
-PASO 1 — Si el usuario saluda o hace consulta general: explicá qué hace ZAFÁ y pedile que comparta la multa. NO ofrezcas pago.
+PASO 1 — Recibís foto/PDF/descripción de multa → analizala completamente.
 
-PASO 2 — Cuando recibas foto, PDF o descripción de una multa: analizala completamente con este marco:
+PASO 2 — Analizá con este marco:
 - Ley Nacional de Tránsito N° 24.449 y Decreto 779/95
 - Ley de Procedimiento Administrativo N° 19.549
-- Normativa provincial: Buenos Aires (Ley 13.927), CABA (Ley 2.148), Córdoba (Ley 8.560), Santa Fe (Ley 13.169), Mendoza (Ley 6.082)
+- Principios del Derecho Administrativo: legalidad, debido proceso, razonabilidad, proporcionalidad
+- CABA: Ley 2.148 | Buenos Aires: Ley 13.927 | Córdoba: Ley 8.560 | Santa Fe: Ley 13.169 | Mendoza: Ley 6.082
 - Ordenanzas municipales del lugar del acta
 
-VICIOS FORMALES a detectar: falta firma/sello del agente, datos incompletos, artículo que no corresponde al hecho, notificación defectuosa, incompetencia del agente, prescripción, falta de calibración de instrumentos de medición.
+VICIOS FORMALES: falta firma/sello agente, datos incompletos, artículo que no corresponde, notificación defectuosa, incompetencia del agente, prescripción, falta calibración instrumentos.
+VICIOS SUSTANCIALES: hecho no encuadra en artículo, error calificación, violación proporcionalidad, violación debido proceso.
 
-VICIOS SUSTANCIALES: hecho que no encuadra en el artículo, error en calificación, violación de proporcionalidad, violación al debido proceso.
-
-PASO 3 — Presentá el análisis con este formato exacto:
+PASO 3 — Presentá el análisis:
 
 📋 ANÁLISIS DE LA INFRACCIÓN
 
@@ -154,27 +211,24 @@ PASO 3 — Presentá el análisis con este formato exacto:
 [cada irregularidad con cita legal]
 
 📌 CONCLUSIÓN:
-[recomendación]
+[recomendación clara]
 
-PASO 4 — MUY IMPORTANTE: Si encontraste irregularidades, SIEMPRE terminá con esta pregunta exacta:
-"¿Querés que prepare el descargo formal para presentar? Por $5.000 obtenés el documento completo listo para entregar."
+PASO 4 — Si hay irregularidades, terminá SIEMPRE con:
+"¿Querés que prepare el descargo formal? Por $5.000 obtenés el documento completo listo para presentar."
 
-Si NO hay irregularidades, decíselo honestamente y NO ofrezcas descargo.
+PASO 5 — Cuando el usuario confirme que sí → el sistema muestra el botón de pago.
 
-PASO 5 — Cuando el usuario diga que sí quiere el descargo, respondé confirmando que va a poder pagar y que luego le pedirás los datos. NO generes el descargo todavía.
-
-PASO 6 — SOLO después del pago confirmado pedís los datos:
+PASO 6 — Después del pago pedís los datos:
 1. Nombre y apellido completo
 2. DNI
 3. Domicilio completo
-4. Dominio/patente del vehículo
-5. Jurisdicción donde fue labrada la multa
+4. Dominio/patente
+5. Jurisdicción de la multa
 6. Número de acta
-7. Fecha límite para presentar (si la conoce)
+7. Fecha límite para presentar
 
-PASO 7 — Con todos los datos generás el descargo completo marcado con INICIO_DESCARGO y FIN_DESCARGO.
+PASO 7 — Con los datos generás el descargo marcado con INICIO_DESCARGO y FIN_DESCARGO:
 
-Estructura del descargo:
 INICIO_DESCARGO
 [CIUDAD], [FECHA]
 
@@ -182,19 +236,19 @@ SEÑOR/A [CARGO]
 [ORGANISMO]
 S/D
 
-[NOMBRE], DNI N° [DNI], con domicilio en [DOMICILIO], titular/conductor del vehículo dominio [PATENTE], me presento y digo:
+[NOMBRE], DNI N° [DNI], domicilio en [DOMICILIO], titular del vehículo dominio [PATENTE], me presento y digo:
 
 I. OBJETO
 Interpongo formal DESCARGO contra el Acta N° [NÚMERO], labrada el [FECHA] en [LUGAR].
 
 II. HECHOS
-[descripción objetiva]
+[descripción objetiva completa]
 
 III. VICIOS DETECTADOS
-[cada irregularidad con cita legal]
+[cada irregularidad con cita legal específica y desarrollo completo]
 
 IV. DERECHO
-[artículos aplicables y principios del Derecho Administrativo]
+[artículos aplicables, principios del Derecho Administrativo, jurisprudencia si corresponde]
 
 V. PETITORIO
 1. Se tenga por interpuesto el presente descargo.
@@ -207,10 +261,12 @@ Proveer de conformidad será JUSTICIA.
 DNI: [DNI]
 FIN_DESCARGO
 
-REGLAS CRÍTICAS:
-- NUNCA ofrezcas pago si el usuario solo saludó.
-- NUNCA inventés irregularidades.
-- Si no podés leer la imagen, pedí que la describan.`;
+REGLAS:
+- Sé empático y comprensivo con el usuario.
+- Usá lenguaje simple pero profesional.
+- Si no podés leer la imagen pedí que la describan.
+- Nunca inventés irregularidades.
+- Siempre aclarás: "Este análisis es orientativo y no reemplaza el asesoramiento de un abogado matriculado."`;
 
 let historial = [];
 let adjunto = null;
@@ -219,12 +275,24 @@ let pagoConfirmado = false;
 let datosCliente = {};
 let casos = [];
 let descargoPDF = null;
-let adminVisible = false;
 
+// ── VISTAS ────────────────────────────────────────────────────────────────────
+function setVista(v) {
+  ["chat","consulta","admin"].forEach(id => {
+    document.getElementById("vista-" + id).style.display = "none";
+    document.getElementById("btn-vista-" + id)?.classList.remove("active");
+  });
+  document.getElementById("vista-" + v).style.display = v === "chat" ? "flex" : "block";
+  document.getElementById("btn-vista-" + v)?.classList.add("active");
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
 window.onload = () => {
-  agregarMensaje("bot", "¡Hola! Soy ZAFÁ, tu asistente legal para infracciones de tránsito.\n\nAnalizá tu multa de forma gratuita: subí una foto, un PDF, o contame los detalles del acta.\n\nSi encontramos irregularidades, te ofrezco preparar tu descargo formal en PDF, listo para presentar.\n\n¿Cómo querés empezar?");
+  setVista("chat");
+  agregarMensaje("bot", "¡Hola! Soy ZAFÁ, tu asistente legal para infracciones de tránsito.\n\nTenés dos opciones:\n\n📄 Subí la foto o PDF de tu multa acá y la analizo gratis\n🔍 O usá la pestaña \"Consultar Multas\" para ver si tu patente tiene infracciones en CABA o PBA\n\nSi encontramos irregularidades, preparamos el descargo formal por $5.000.\n\n¿Por dónde querés empezar?");
 };
 
+// ── MENSAJES ──────────────────────────────────────────────────────────────────
 function agregarMensaje(rol, texto, tipo) {
   const cont = document.getElementById("messages");
   const row = document.createElement("div");
@@ -233,10 +301,10 @@ function agregarMensaje(rol, texto, tipo) {
     row.innerHTML = `<div class="msg-avatar">Z</div>
       <div class="pago-card">
         <h3>Descargo formal — ZAFÁ</h3>
-        <p>PDF completo con argumentos legales, listo para presentar ante el organismo.</p>
+        <p>PDF completo con argumentos legales, listo para presentar.</p>
         <div class="precio">$${PRECIO.toLocaleString("es-AR")}</div>
         <button class="btn-mp" onclick="iniciarPago()">💳 PAGAR CON MERCADO PAGO</button>
-        <p class="nota-mp">Pago seguro · Pago único</p>
+        <p class="nota-mp">Pago seguro · Único pago</p>
       </div>`;
   } else if (tipo === "descargo") {
     row.innerHTML = `<div class="msg-avatar">Z</div>
@@ -258,6 +326,7 @@ function agregarMensaje(rol, texto, tipo) {
   cont.scrollTop = cont.scrollHeight;
 }
 
+// ── ENVIAR MENSAJE ────────────────────────────────────────────────────────────
 async function sendMessage() {
   const txt = document.getElementById("input-text").value.trim();
   if (!txt && !adjunto) return;
@@ -272,7 +341,7 @@ async function sendMessage() {
     content = [];
     if (adjunto.tipo === "image") content.push({ type: "image", source: { type: "base64", media_type: adjunto.mediaType, data: adjunto.data } });
     else content.push({ type: "document", source: { type: "base64", media_type: "application/pdf", data: adjunto.data } });
-    content.push({ type: "text", text: txt || "Analizá esta multa. Detectá todas las irregularidades legales." });
+    content.push({ type: "text", text: txt || "Analizá esta multa. Detectá todas las irregularidades legales y desarrollá cada una completamente." });
   } else {
     content = txt;
   }
@@ -290,17 +359,13 @@ async function sendMessage() {
     });
     const data = await res.json();
     const reply = data.content?.[0]?.text || "Error al procesar. Intentá de nuevo.";
-
     document.getElementById("typing")?.remove();
     historial.push({ role: "assistant", content: reply });
 
     let displayReply = reply;
     if (reply.includes("INICIO_DESCARGO") && reply.includes("FIN_DESCARGO")) {
       const match = reply.match(/INICIO_DESCARGO([\s\S]*?)FIN_DESCARGO/);
-      if (match) {
-        descargoPDF = match[1].trim();
-        displayReply = reply.replace(/INICIO_DESCARGO[\s\S]*?FIN_DESCARGO/, "").trim();
-      }
+      if (match) { descargoPDF = match[1].trim(); displayReply = reply.replace(/INICIO_DESCARGO[\s\S]*?FIN_DESCARGO/, "").trim(); }
     }
 
     agregarMensaje("bot", displayReply);
@@ -308,45 +373,21 @@ async function sendMessage() {
     const low = reply.toLowerCase();
     const txtLow = txt ? txt.toLowerCase() : "";
 
-    // Detectar cuando la IA ofrece el descargo después del análisis
-    const iaOfrecioDescargo = (
-      low.includes("descargo formal") ||
-      low.includes("preparar el descargo") ||
-      low.includes("queres que prepare") ||
-      low.includes("querés que prepare") ||
-      low.includes("5.000") ||
-      low.includes("$5000") ||
-      (low.includes("irregularidad") && low.includes("descargo")) ||
-      (low.includes("vicio") && low.includes("descargo")) ||
-      (low.includes("nulidad") && low.includes("descargo"))
-    );
+    const iaOfrecioDescargo = low.includes("descargo formal") || low.includes("preparar el descargo") || low.includes("5.000") || low.includes("$5000") || (low.includes("irregularidad") && low.includes("descargo")) || (low.includes("vicio") && low.includes("descargo")) || (low.includes("nulidad") && low.includes("descargo"));
 
     if (step === "chat" && !pagoConfirmado && iaOfrecioDescargo) {
       step = "analisis";
-      if (!casos.find(c => !c.pagado)) {
-        casos.push({ nombre: "", fecha: new Date().toLocaleDateString("es-AR"), pagado: false });
-        actualizarAdmin();
-      }
+      if (!casos.find(c => !c.pagado)) { casos.push({ nombre: "", fecha: new Date().toLocaleDateString("es-AR"), pagado: false }); actualizarAdmin(); }
     }
 
-    // Detectar cuando el usuario confirma que quiere el descargo
-    const usuarioConfirmo = (
-      txtLow.includes("sí") || txtLow.includes("si") ||
-      txtLow.includes("quiero") || txtLow.includes("dale") ||
-      txtLow.includes("ok") || txtLow.includes("bueno") ||
-      txtLow.includes("claro") || txtLow.includes("adelante") ||
-      txtLow.includes("yes") || txtLow.includes("obvio") ||
-      txtLow.includes("por supuesto") || txtLow === "s"
-    );
+    const usuarioConfirmo = txtLow.includes("sí") || txtLow.includes("si") || txtLow.includes("quiero") || txtLow.includes("dale") || txtLow.includes("ok") || txtLow.includes("bueno") || txtLow.includes("claro") || txtLow.includes("adelante") || txtLow.includes("yes") || txtLow.includes("obvio") || txtLow === "s";
 
     if (step === "analisis" && !pagoConfirmado && usuarioConfirmo) {
       step = "ofrecer_pago";
       setTimeout(() => agregarMensaje("bot", null, "pago"), 400);
     }
 
-    if (descargoPDF) {
-      setTimeout(() => agregarMensaje("bot", null, "descargo"), 500);
-    }
+    if (descargoPDF) setTimeout(() => agregarMensaje("bot", null, "descargo"), 500);
 
   } catch (e) {
     document.getElementById("typing")?.remove();
@@ -357,6 +398,7 @@ async function sendMessage() {
 
 function handleKey(e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
 
+// ── ARCHIVO ───────────────────────────────────────────────────────────────────
 function handleFile(file) {
   if (!file) return;
   if (!file.type.startsWith("image/") && file.type !== "application/pdf") { alert("Solo imágenes o PDF."); return; }
@@ -377,6 +419,90 @@ function quitarAdjunto() {
   document.getElementById("input-text").placeholder = "Describí tu multa o adjuntá una foto/PDF...";
 }
 
+// ── CONSULTA MULTAS ───────────────────────────────────────────────────────────
+async function consultarMultas() {
+  const patente = document.getElementById("input-patente").value.trim().toUpperCase();
+  const jurisdiccion = document.getElementById("select-jurisdiccion").value;
+  const cont = document.getElementById("resultado-multas");
+
+  if (!patente || patente.length < 6) { cont.innerHTML = `<p style="color:#ff6b6b;font-size:13px;padding:8px 0">Ingresá una patente válida (ej: ABC123 o AA123BB)</p>`; return; }
+
+  cont.innerHTML = `<p style="color:var(--texto2);font-size:13px;padding:12px 0;text-align:center">🔍 Consultando multas para <strong style="color:var(--verde)">${patente}</strong>...</p>`;
+
+  try {
+    const res = await fetch("/api/consultar-multas", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ dominio: patente, jurisdiccion })
+    });
+    const data = await res.json();
+    renderResultados(data, patente);
+  } catch (e) {
+    // Fallback con links directos
+    cont.innerHTML = `
+      <p style="color:var(--texto2);font-size:13px;margin-bottom:12px">No se pudo consultar automáticamente. Usá los links oficiales:</p>
+      <div class="link-manual">🏙️ <strong>CABA:</strong> <a href="https://infraccionesdetransito.buenosaires.gob.ar" target="_blank">infraccionesdetransito.buenosaires.gob.ar</a></div>
+      <div class="link-manual" style="margin-top:6px">🌿 <strong>PBA:</strong> <a href="https://consultasmultas.ec.gba.gov.ar" target="_blank">consultasmultas.ec.gba.gov.ar</a></div>`;
+  }
+}
+
+function renderResultados(data, patente) {
+  const cont = document.getElementById("resultado-multas");
+  if (!data.resultados || data.resultados.length === 0) {
+    cont.innerHTML = `<div class="sin-multas">No se encontraron resultados para <strong>${patente}</strong></div>`;
+    return;
+  }
+
+  let html = "";
+  let totalMultas = 0;
+
+  data.resultados.forEach(r => {
+    html += `<p style="font-size:12px;color:var(--texto2);margin:10px 0 6px;font-weight:700;text-transform:uppercase;letter-spacing:1px">${r.jurisdiccion}</p>`;
+
+    if (r.multas && r.multas.length > 0) {
+      totalMultas += r.multas.length;
+      r.multas.forEach((m, i) => {
+        html += `<div class="multa-item">
+          <div class="multa-header">
+            <span class="acta">Acta N° ${m.acta}</span>
+            <span class="estado-badge">${m.estado || "Pendiente"}</span>
+          </div>
+          <div class="multa-dato">📅 Fecha: <span>${m.fecha}</span></div>
+          <div class="multa-dato">📍 Lugar: <span>${m.lugar}</span></div>
+          <div class="multa-dato">⚖️ Artículo: <span>${m.articulo}</span></div>
+          <div class="multa-dato">💰 Monto: <span>$${m.monto}</span></div>
+          <button class="btn-analizar-multa" onclick="analizarDesdeConsulta('${patente}', '${m.acta}', '${m.fecha}', '${m.articulo}', '${r.jurisdiccion}')">
+            ⚖️ Analizar esta multa con ZAFÁ
+          </button>
+        </div>`;
+      });
+    } else if (r.link) {
+      html += `<div class="sin-multas" style="padding:12px">
+        <p style="margin-bottom:8px">${r.mensaje}</p>
+        <a href="${r.link}" target="_blank" style="color:var(--verde);font-size:13px">🔗 Consultar en sitio oficial →</a>
+      </div>`;
+    } else {
+      html += `<div class="sin-multas">✅ ${r.mensaje || "Sin multas registradas"}</div>`;
+    }
+  });
+
+  if (totalMultas > 0) {
+    html = `<div style="background:#1a0a0a;border:1px solid #3a0000;border-radius:10px;padding:12px;margin-bottom:12px;text-align:center">
+      <span style="color:#ff6b6b;font-size:14px;font-weight:700">⚠️ Se encontraron ${totalMultas} infracción${totalMultas > 1 ? "es" : ""} para ${patente}</span>
+    </div>` + html;
+  }
+
+  cont.innerHTML = html;
+}
+
+function analizarDesdeConsulta(patente, acta, fecha, articulo, jurisdiccion) {
+  setVista("chat");
+  const msg = `Quiero analizar la multa de mi vehículo patente ${patente}. Acta N° ${acta}, fecha ${fecha}, artículo ${articulo}, jurisdicción ${jurisdiccion}.`;
+  document.getElementById("input-text").value = msg;
+  sendMessage();
+}
+
+// ── PAGO ──────────────────────────────────────────────────────────────────────
 async function iniciarPago() {
   try {
     const res = await fetch("/api/crear-pago", {
@@ -385,61 +511,44 @@ async function iniciarPago() {
       body: JSON.stringify({ monto: PRECIO, descripcion: "Descargo formal - ZAFÁ" })
     });
     const data = await res.json();
-    if (data.init_point) {
-      window.open(data.init_point, "_blank");
-      setTimeout(confirmarPago, 4000);
-    } else { confirmarPago(); }
+    if (data.init_point) { window.open(data.init_point, "_blank"); setTimeout(confirmarPago, 4000); }
+    else confirmarPago();
   } catch { confirmarPago(); }
 }
 
 function confirmarPago() {
-  pagoConfirmado = true;
-  step = "datos";
+  pagoConfirmado = true; step = "datos";
   if (casos.length) casos[casos.length - 1].pagado = true;
   document.getElementById("badge-pago").style.display = "inline-block";
   actualizarAdmin();
-  const txt = "Pago recibido ✅\n\nPara preparar tu descargo necesito tus datos:\n\n1. Nombre y apellido completo\n2. DNI\n3. Domicilio completo (calle, número, localidad, provincia)\n4. Dominio/patente del vehículo\n5. Jurisdicción donde fue labrada la multa\n6. Número de acta\n7. Fecha límite para presentar (si la conocés)\n\nEscribí todos los datos juntos en tu próximo mensaje.";
+  const txt = "Pago recibido ✅\n\nPara preparar tu descargo necesito tus datos:\n\n1. Nombre y apellido completo\n2. DNI\n3. Domicilio completo (calle, número, localidad, provincia)\n4. Dominio/patente del vehículo\n5. Jurisdicción donde fue labrada la multa\n6. Número de acta\n7. Fecha límite para presentar (si la conocés)\n\nEscribí todos los datos juntos.";
   historial.push({ role: "assistant", content: txt });
   agregarMensaje("bot", txt);
 }
 
+// ── DATOS ─────────────────────────────────────────────────────────────────────
 function extraerDatos(texto) {
   const lineas = texto.split("\n");
   lineas.forEach(l => {
-    const low = l.toLowerCase();
-    const val = l.replace(/^[^:]*:/, "").trim();
+    const low = l.toLowerCase(); const val = l.replace(/^[^:]*:/, "").trim();
     if (low.includes("nombre") || low.includes("apellido")) datosCliente.nombre = val;
     if (low.includes("dni")) datosCliente.dni = val.replace(/\D/g, "");
     if (low.includes("domicilio") || low.includes("direcci")) datosCliente.domicilio = val;
-    if (low.includes("dominio") || low.includes("patente") || low.includes("matrícula")) datosCliente.dominio = val.toUpperCase();
+    if (low.includes("dominio") || low.includes("patente") || low.includes("matr")) datosCliente.dominio = val.toUpperCase();
     if (low.includes("jurisdicci") || low.includes("ciudad") || low.includes("provincia")) datosCliente.jurisdiccion = val;
   });
   if (casos.length && datosCliente.nombre) { casos[casos.length - 1].nombre = datosCliente.nombre; actualizarAdmin(); }
 }
 
+// ── PDF ───────────────────────────────────────────────────────────────────────
 function imprimirPDF() {
   if (!descargoPDF) return;
   const d = datosCliente;
   const fecha = new Date().toLocaleDateString("es-AR", { day: "2-digit", month: "long", year: "numeric" });
   const html = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"/><title>Descargo ZAFÁ</title>
-  <style>
-    body{font-family:'Times New Roman',serif;font-size:12pt;color:#000;margin:0}
-    .page{padding:3cm 2.5cm;max-width:21cm;margin:auto}
-    .logo{text-align:center;font-family:Arial Black,sans-serif;font-size:30pt;color:#2EAA3F;font-weight:900;letter-spacing:4px;margin-bottom:4px}
-    .sub{text-align:center;font-size:10pt;color:#555;margin-bottom:6px}
-    .linea{border-top:3px solid #2EAA3F;margin-bottom:24px}
-    h1{font-size:13pt;text-align:center;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px}
-    .datos{background:#f8f8f8;border-left:4px solid #2EAA3F;padding:12px 16px;margin-bottom:24px}
-    .datos p{margin:5px 0;font-size:11pt}
-    .cuerpo{line-height:1.9;text-align:justify;white-space:pre-wrap;margin-bottom:24px;font-size:11.5pt}
-    .firma-area{margin-top:60px;display:flex;justify-content:flex-end}
-    .firma{border-top:1px solid #000;width:240px;padding-top:6px;font-size:11pt;text-align:center}
-    .footer{margin-top:40px;text-align:center;font-size:8.5pt;color:#aaa;border-top:1px solid #eee;padding-top:10px}
-    @media print{body{margin:0}}
-  </style></head><body><div class="page">
-  <div class="logo">ZAFÁ</div>
-  <p class="sub">Asistente Legal · Infracciones de Tránsito · Argentina</p>
-  <div class="linea"></div>
+  <style>body{font-family:'Times New Roman',serif;font-size:12pt;color:#000;margin:0}.page{padding:3cm 2.5cm;max-width:21cm;margin:auto}.logo{text-align:center;font-family:Arial Black,sans-serif;font-size:30pt;color:#2EAA3F;font-weight:900;letter-spacing:4px;margin-bottom:4px}.sub{text-align:center;font-size:10pt;color:#555;margin-bottom:6px}.linea{border-top:3px solid #2EAA3F;margin-bottom:24px}h1{font-size:13pt;text-align:center;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px}.datos{background:#f8f8f8;border-left:4px solid #2EAA3F;padding:12px 16px;margin-bottom:24px}.datos p{margin:5px 0;font-size:11pt}.cuerpo{line-height:1.9;text-align:justify;white-space:pre-wrap;margin-bottom:24px;font-size:11.5pt}.firma-area{margin-top:60px;display:flex;justify-content:flex-end}.firma{border-top:1px solid #000;width:240px;padding-top:6px;font-size:11pt;text-align:center}.footer{margin-top:40px;text-align:center;font-size:8.5pt;color:#aaa;border-top:1px solid #eee;padding-top:10px}@media print{body{margin:0}}</style>
+  </head><body><div class="page">
+  <div class="logo">ZAFÁ</div><p class="sub">Asistente Legal · Infracciones de Tránsito · Argentina</p><div class="linea"></div>
   <h1>Descargo Formal por Infracción de Tránsito</h1>
   <div class="datos">
     <p><strong>Presentante:</strong> ${d.nombre||"—"}</p>
@@ -454,30 +563,24 @@ function imprimirPDF() {
   <div class="footer">Generado por ZAFÁ · Uso legal exclusivo del presentante · No reemplaza asesoramiento jurídico profesional</div>
   </div></body></html>`;
   const w = window.open("", "_blank");
-  w.document.write(html);
-  w.document.close();
-  w.focus();
+  w.document.write(html); w.document.close(); w.focus();
   setTimeout(() => w.print(), 700);
 }
 
-function toggleAdmin() {
-  adminVisible = !adminVisible;
-  document.getElementById("admin-panel").style.display = adminVisible ? "block" : "none";
-}
-
+// ── ADMIN ─────────────────────────────────────────────────────────────────────
 function actualizarAdmin() {
   const pagados = casos.filter(c => c.pagado);
   document.getElementById("stat-total").textContent = casos.length;
   document.getElementById("stat-pagados").textContent = pagados.length;
   document.getElementById("stat-recaudado").textContent = "$" + (pagados.length * PRECIO).toLocaleString("es-AR");
   const lista = document.getElementById("lista-casos");
-  if (!casos.length) { lista.innerHTML = '<p style="color:var(--texto2);font-size:13px;text-align:center;padding:24px">Aún no hay casos.</p>'; return; }
+  if (!casos.length) { lista.innerHTML = '<p style="color:var(--texto2);font-size:13px;text-align:center;padding:24px">Sin casos.</p>'; return; }
   lista.innerHTML = casos.slice().reverse().map(c => `
     <div class="caso">
       <span style="font-size:20px">${c.pagado?"✅":"⏳"}</span>
-      <div style="flex:1"><div class="nombre">${c.nombre||"Sin identificar"}</div>
-      <div class="fecha">${c.fecha} · ${c.pagado?"Pagado · $"+PRECIO.toLocaleString("es-AR"):"Pendiente"}</div></div>
-      <span class="estado ${c.pagado?"pagado":"pendiente"}">${c.pagado?"Pagado":"Pendiente"}</span>
+      <div style="flex:1"><div class="cnombre">${c.nombre||"Sin identificar"}</div>
+      <div class="cfecha">${c.fecha} · ${c.pagado?"Pagado · $"+PRECIO.toLocaleString("es-AR"):"Pendiente"}</div></div>
+      <span class="cestado ${c.pagado?"pagado":"pendiente"}">${c.pagado?"Pagado":"Pendiente"}</span>
     </div>`).join("");
 }
 </script>
