@@ -24,12 +24,14 @@ export default async function handler(req, res) {
           }
         ],
         back_urls: {
-          success: "https://zafa.vercel.app",
-          failure: "https://zafa.vercel.app",
-          pending: "https://zafa.vercel.app"
-        },
-        auto_return: "approved",
-        statement_descriptor: "ZAFA Legal"
+          success: "https://zafa.vercel.app/?pago=ok",  
+    failure: "https://zafa.vercel.app/?pago=error",
+    pending: "https://zafa.vercel.app/?pago=pendiente"
+  },
+  auto_return: "approved",
+  notification_url: "https://zafa.vercel.app/api/webhook-mp",
+  external_reference: Date.now().toString(),  //
+  statement_descriptor: "ZAFA Legal"
       })
     });
 
