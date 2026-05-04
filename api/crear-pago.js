@@ -6,6 +6,7 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método no permitido" });
 
   const { monto, descripcion } = req.body;
+  const externalRef = Date.now().toString();
 
   try {
     const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
@@ -24,19 +25,25 @@ export default async function handler(req, res) {
           }
         ],
         back_urls: {
-          success: "https://zafa.vercel.app/?pago=ok",  
-    failure: "https://zafa.vercel.app/?pago=error",
-    pending: "https://zafa.vercel.app/?pago=pendiente"
-  },
-  auto_return: "approved",
-  notification_url: "https://zafa.vercel.app/api/webhook-mp",
-  external_reference: Date.now().toString(),  //
-  statement_descriptor: "ZAFA Legal"
+          success: "https://zafa.vercel.app/?pago=ok",
+          failure: "https://zafa.vercel.app/?pago=error",
+          pending: "https://zafa.vercel.app/?pago=pendiente"
+        },
+        auto_return: "approved",
+        notification_url: "https://zafa.vercel.app/api/webhook-mp",
+        external_reference: externalRef,
+        statement_descriptor: "ZAFA Legal"
       })
     });
 
     const data = await response.json();
-    return res.status(200).json({ init_point: data.init_point, id: data.id });
+
+    if (!data.init_point) {
+      console.error("MP error:", JSON.stringify(data));
+      return res.status(500).json({ error: "Mercado Pago no devolvió un link de pago", detail: data });
+    }
+
+    return res.status(200).json({ init_point: data.init_point, id: data.id, external_reference: externalRef });
   } catch (error) {
     return res.status(500).json({ error: "Error al crear el pago", detail: error.message });
   }
